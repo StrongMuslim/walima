@@ -1,0 +1,14 @@
+Ассаляму алейкум! Это черновик нашего сервиса Walima — онлайн-приглашения на той без фотографий.
+Посмотри, пожалуйста, и скажи честно, что понравилось, а что нет.
+
+Два файла:
+• maket.html — сам конструктор: выбираешь сторону, событие, дизайн, вписываешь имена → получаешь приглашение. Оплата и ответы гостей здесь понарошку.
+• sayt.html — сайт сервиса.
+
+Как открыть:
+• Android: нажми на файл → «Открыть с помощью» → Chrome.
+• iPhone: нажми на файл → «Поделиться» → «Открыть в Safari» (во встроенном просмотре Telegram/WhatsApp не работает).
+• Компьютер: скачай и открой двойным щелчком.
+
+Assalomu alaykum! Bu Walima — rasmsiz to‘y taklifnomalari xizmatining qoralama varianti. Ko‘rib, fikringizni ayting.
+Android: faylni Chrome’da oching. iPhone: «Ulashish» → «Safari’da ochish».

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Walima — kabinet (namuna)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Noto+Serif+Display:ital,wght@0,500;1,400;1,500&display=swap">
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--ink:#14213a;--mu:#5d6a80;--ln:#e1e6ee;--co:#1c3f94;--co-soft:#e8eefb;--tq:#1b9aa0;--tq-soft:#e4f4f4;--gold:#c79a3e;--red:#b4372b;--red-soft:#f8e9e7;--fd:'Noto Serif Display',Georgia,serif;--fb:'Onest',system-ui,sans-serif;--spring:cubic-bezier(.2,.9,.25,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--fb);-webkit-tap-highlight-color:transparent}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.w{max-width:560px;margin:0 auto;padding:16px 16px calc(40px + env(safe-area-inset-bottom))}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.badge{font-size:12.5px;font-weight:600;color:var(--gold);border:1px dashed var(--gold);border-radius:999px;padding:4px 10px}
+.lang{display:flex;border:1px solid var(--ln);border-radius:999px;padding:3px;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 11px;border-radius:999px;font-weight:600;font-size:13px;color:var(--mu)}
+.lang button.on{background:var(--co);color:#fff}
+.head{text-align:center;padding:10px 0 18px}
+.head .nm{font-family:var(--fd);font-style:italic;font-size:36px;line-height:1.1;color:var(--co)}
+.head p{color:var(--mu);font-size:15px}
+.days{font-family:var(--fd);font-size:15px;color:var(--ink);margin-top:4px}
+.days b{font-size:26px;font-weight:500}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:22px;padding:18px;margin-bottom:14px}
+.card h2{font-size:17px;font-weight:600;margin-bottom:2px}
+.card .hint{color:var(--mu);font-size:13.5px;margin-bottom:14px}
+/* итог */
+.sum{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center}
+.ring{position:relative;width:120px;height:120px}
+.ring svg{width:120px;height:120px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:13}
+.ring .c0{stroke:var(--ln)}.ring .c1{stroke:var(--tq);stroke-linecap:round;transition:stroke-dasharray 1.2s var(--spring)}.ring .c2{stroke:var(--red);stroke-linecap:round;transition:stroke-dasharray 1.2s var(--spring)}
+.ring .mid{position:absolute;inset:0;display:grid;place-items:center;text-align:center;line-height:1.05}
+.ring .mid b{font-family:var(--fd);font-size:34px;font-weight:500;display:block}
+.ring .mid span{font-size:12px;color:var(--mu)}
+.legend{display:grid;gap:8px}
+.lg{display:flex;align-items:baseline;gap:8px;font-size:15px}
+.lg i{width:10px;height:10px;border-radius:50%;flex:none;transform:translateY(-1px)}
+.lg b{font-family:var(--fd);font-size:22px;font-weight:500}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.sp{border-radius:16px;padding:12px 14px;background:var(--bg)}
+.sp p{font-size:13px;color:var(--mu)}
+.sp b{display:block;font-family:var(--fd);font-weight:500;font-size:28px;line-height:1.1}
+.sp small{font-size:13px;color:var(--mu)}
+.osh{margin-top:12px;padding:12px 14px;border-radius:16px;background:#fbf4e6;color:#7a5a1d;font-size:14.5px;display:flex;gap:10px;align-items:center}
+.osh svg{flex:none;width:26px;height:26px}
+/* действия */
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.acts .btn{white-space:nowrap;font-size:14.5px;padding:0 10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 14px;border-radius:14px;border:1px solid var(--co);background:var(--co);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:transform .12s ease-out}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--card);color:var(--co);border-color:var(--ln)}
+.btn svg{width:19px;height:19px;flex:none}
+/* список */
+.tools{display:grid;gap:10px;margin-bottom:12px}
+.search{position:relative}
+.search input{width:100%;border:1px solid var(--ln);background:var(--bg);border-radius:14px;padding:12px 14px 12px 40px;font-size:16px;outline:none}
+.search input:focus{border-color:var(--co);background:#fff}
+.search svg{position:absolute;left:13px;top:50%;width:18px;height:18px;margin-top:-9px;color:var(--mu)}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--ln);background:var(--card);border-radius:999px;padding:8px 13px;font-weight:600;font-size:14px}
+.chip small{color:var(--mu);font-weight:500;margin-left:4px}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}.chip.on small{color:rgba(255,255,255,.7)}
+.g{display:grid;grid-template-columns:42px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--ln)}
+.g:first-child{border-top:0}
+.av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;font-size:15px}
+.av.y{background:var(--tq)}.av.n{background:#c9cfd9}.av.w{background:none;border:1.5px dashed #b9c1ce;color:var(--mu)}
+.g .nm{font-weight:600;font-size:15.5px;line-height:1.25}
+.g .meta{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px;color:var(--mu);margin-top:2px}
+.g .meta a{color:var(--co);text-decoration:none}
+.g .ago{display:block;font-size:12.5px;color:var(--mu);margin-top:1px}
+.g .tag{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:2px 8px;margin-top:5px;margin-right:4px}
+.tag.m{background:var(--co-soft);color:var(--co)}.tag.f{background:var(--tq-soft);color:#147c80}.tag.a{background:#fbf4e6;color:#7a5a1d}.tag.src{background:var(--bg);color:var(--mu)}
+.g .dua{font-size:14px;font-style:italic;color:#46526a;margin-top:6px;line-height:1.4}
+.g .r{text-align:right;white-space:nowrap}
+.g .cnt{font-family:var(--fd);font-size:22px;line-height:1}
+.g .r small{display:block;font-size:12px;color:var(--mu)}
+.g .no{font-size:13px;font-weight:600;color:var(--red)}
+.g .wait{font-size:13px;color:var(--mu)}
+.empty{color:var(--mu);font-size:14.5px;padding:10px 0}
+/* дуа */
+.duas{display:grid;gap:10px}
+.du{padding:14px;border-radius:16px;background:var(--bg);position:relative}
+.du p{font-family:var(--fd);font-style:italic;font-size:17px;line-height:1.4}
+.du span{display:block;margin-top:6px;font-size:13px;color:var(--mu)}
+/* Telegram */
+.tgwin{background:#cbdcec url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 10l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z' fill='%23ffffff' opacity='.25'/%3E%3C/svg%3E");border-radius:18px;padding:12px;display:grid;gap:8px}
+.tgh{display:flex;align-items:center;gap:10px;background:#fff;margin:-12px -12px 4px;padding:10px 12px;border-radius:18px 18px 0 0;border-bottom:1px solid var(--ln)}
+.tgh i{width:34px;height:34px;border-radius:50%;background:var(--co);display:grid;place-items:center;color:#fff;font-style:normal;font-weight:700;font-size:14px}
+.tgh b{display:block;font-size:15px}.tgh small{color:var(--mu);font-size:12.5px}
+.bub{background:#fff;border-radius:14px 14px 14px 4px;padding:9px 12px 6px;max-width:92%;font-size:14.5px;line-height:1.45;box-shadow:0 1px 1px rgba(0,0,0,.08);white-space:pre-line}
+.bub .tm{display:block;text-align:right;font-size:11px;color:#8a96a8;margin-top:2px}
+.bub b{font-weight:700}
+.ikb{display:grid;grid-template-columns:1fr 1fr;gap:4px;max-width:92%}
+.ikb button{border:0;border-radius:10px;background:rgba(40,70,110,.32);color:#fff;font-weight:600;font-size:14px;padding:9px 6px;backdrop-filter:blur(4px)}
+.ikb button.full{grid-column:1/-1}
+.me{justify-self:end;background:#e1fec6;border-radius:14px 14px 4px 14px}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-radius:12px;padding:4px;margin-bottom:12px}
+.seg button{border:0;background:none;border-radius:9px;padding:9px;font-weight:600;font-size:14px;color:var(--mu)}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.sheet-bg{position:fixed;inset:0;background:rgba(10,14,24,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:20}
+.sheet-bg.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:#fff;border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .45s var(--spring);max-width:560px;margin:0 auto;max-height:80vh;overflow:auto}
+.sheet.on{transform:none}
+.grab{width:42px;height:5px;border-radius:3px;background:var(--ln);margin:0 auto 14px}
+.sheet h3{font-family:var(--fd);font-weight:500;font-size:23px;margin-bottom:4px}
+.sheet textarea{width:100%;min-height:110px;border:1px solid var(--ln);border-radius:14px;padding:12px;font-size:15px;margin:10px 0}
+.rm{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--ln)}
+.rm b{flex:1;font-size:15px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:#fff;padding:11px 16px;border-radius:14px;font-weight:600;font-size:14.5px;transition:all .3s var(--spring);pointer-events:none;z-index:30;max-width:92vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="top"><span class="badge" data-t="sample"></span><div class="lang"><button data-l="uz" class="on">Oʻzb</button><button data-l="ru">Рус</button></div></div>
+  <div class="head"><p class="nm">Yusuf &amp; Maryam</p><p data-t="date"></p><p class="days"><b id="days"></b> <span data-t="daysLeft"></span></p></div>
+
+  <div class="card"><h2 data-t="sumT"></h2><p class="hint" data-t="sumS"></p>
+    <div class="sum"><div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="c0"/><circle cx="60" cy="60" r="52" class="c2" id="r2"/><circle cx="60" cy="60" r="52" class="c1" id="r1"/></svg><div class="mid"><div><b id="ppl"></b><span data-t="people"></span></div></div></div>
+      <div class="legend" id="legend"></div></div>
+    <div class="split" id="split"></div>
+    <div class="osh" id="osh"></div>
+  </div>
+
+  <div class="card"><div class="acts">
+    <button class="btn" id="xls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg><span data-t="xls"></span></button>
+    <button class="btn ghost" id="remind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 20a2 2 0 0 0 4 0"/></svg><span data-t="remind"></span></button>
+  </div></div>
+
+  <div class="card"><h2 data-t="listT"></h2><p class="hint" data-t="listS"></p>
+    <div class="tools"><label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" autocomplete="off"></label>
+      <div class="chips" id="chips"></div></div>
+    <div id="list"></div>
+  </div>
+
+  <div class="card"><h2 data-t="duaT"></h2><p class="hint" data-t="duaS"></p><div class="duas" id="duas"></div></div>
+
+  <div class="card"><h2 data-t="tgT"></h2><p class="hint" data-t="tgS"></p>
+    <div class="seg"><button class="on" data-tg="couple" data-t="tgCouple"></button><button data-tg="guest" data-t="tgGuest"></button></div>
+    <div class="tgwin" id="tgwin"></div>
+  </div>
+</div>
+<div class="sheet-bg" id="bg"></div><div class="sheet" id="sheet"></div><div class="toast" id="toast"></div>
+
+<script>
+/* ── пример данных: вымышленные гости ── */
+var NOW = Date.now(), H = 3600e3;
+var G = [
+  ['Akmal aka', 'akmal_t', '+998 90 123 45 67', 1, 3, 'm', 'tg', 'Alloh baxtli qilsin, ikki yoshga baraka bersin!', 2],
+  ['Dilnoza opa', 'dilnoza_k', '+998 93 555 12 34', 1, 2, 'f', 'tg', 'Baxtli boʻlinglar, oilangiz mustahkam boʻlsin', 3],
+  ['Rustam Karimov', '', '+998 97 777 08 09', 0, 0, '', 'web', 'Afsuski safardaman. Duodaman, Barakalloh!', 5],
+  ['Sardor', 'sardor_uz', '', 1, 1, 'm', 'tg', '', 6],
+  ['Nodira xola', '', '+998 91 234 56 78', 1, 4, 'f', 'web', 'Alloh ikki yoshni bir-biriga suyanchiq qilsin', 7],
+  ['Bahodir aka', 'bahodir88', '+998 90 444 33 22', 1, 2, 'm', 'tg', '', 9],
+  ['Gulnora', 'gulnora_m', '', 1, 3, 'f', 'tg', 'Muborak boʻlsin, Maryamjon!', 11],
+  ['Otabek', '', '+998 99 101 20 30', 1, 1, 'm', 'web', '', 12],
+  ['Zarina opa', 'zarina_opa', '+998 94 321 00 11', 0, 0, '', 'tg', 'Kasalman, uzr. Duoda boʻlaman', 14],
+  ['Jamshid', 'jamshid_dev', '', 1, 2, 'm', 'tg', 'Barakallohu lakuma!', 15],
+  ['Muhabbat xola', '', '+998 90 909 80 70', 1, 5, 'f', 'web', 'Bolalaringizning baxtini koʻraylik', 18],
+  ['Ilhom', 'ilhom_a', '+998 93 600 70 80', 1, 1, 'm', 'tg', '', 20],
+  ['Shahnoza', 'shahnoza_s', '', 1, 2, 'f', 'tg', '', 22],
+  ['Abdulaziz domla', '', '+998 97 888 11 22', 1, 1, 'm', 'web', 'Alloh bu nikohni muborak qilsin', 25],
+  ['Feruza', 'feruza_r', '+998 91 700 60 50', 1, 3, 'f', 'tg', '', 27],
+  ['Ulugʻbek', '', '+998 95 112 23 34', 0, 0, '', 'web', 'Xorijdaman, duoda boʻlaman', 30],
+  ['Kamola', 'kamola_x', '', 1, 2, 'f', 'tg', 'Maryam, baxtli boʻl!', 33],
+  ['Doniyor', 'doniyor_b', '+998 90 300 40 50', 1, 2, 'm', 'tg', '', 36],
+  ['Sevara opa', '', '+998 93 222 44 66', 1, 3, 'f', 'web', '', 40],
+  ['Komil aka', 'komil_aka', '+998 99 555 66 77', 1, 1, 'm', 'tg', 'Oilangiz obod boʻlsin', 44],
+  ['Mohira', 'mohira_n', '', 0, 0, '', 'tg', '', 48],
+  ['Anvar', '', '+998 97 404 50 60', 1, 2, 'm', 'web', '', 52],
+  ['Nilufar', 'nilufar_q', '+998 94 808 70 60', 1, 2, 'f', 'tg', '', 55],
+  ['Shavkat aka', '', '+998 90 210 32 43', 1, 3, 'a', 'web', 'Kechqurun hammamiz boramiz', 60],
+].map(function (g, i) { return { id: i, name: g[0], user: g[1], phone: g[2], att: g[3], count: g[4], part: g[5], src: g[6], msg: g[7], at: NOW - g[8] * H }; });
+// личные ссылки, по которым ещё не ответили
+['Hasan aka', 'Lola opa', 'Murod', 'Zuhra xola', 'Bekzod', 'Malika'].forEach(function (n, i) { G.push({ id: 100 + i, name: n, wait: true, phone: ['+998 90 111 22 33', '', '+998 93 444 55 66', '+998 91 777 88 99', '', '+998 97 222 11 00'][i] }); });
+
+var T = {
+  uz: { sample: 'Namuna — barcha mehmonlar oʻylab topilgan', date: '16-yanvar, shanba', daysLeft: 'kun qoldi', sumT: 'Kim keladi', sumS: 'Javoblar mehmonlar tugmani bosganda shu yerga va Telegramga keladi.', people: 'kishi',
+    yesF: 'oila keladi', noF: 'kela olmaydi', waitF: 'javob bermagan', men: 'Erkaklar · 06:00', women: 'Ayollar · 11:00', all: 'Umumiy · 18:00', ppl: 'kishi',
+    osh: function (m) { return 'Nahorgi osh uchun: <b>' + m + ' kishi</b>. Odatda 1 kg guruch 6–7 kishiga.'; },
+    xls: 'Excel roʻyxat', remind: 'Eslatma yuborish', listT: 'Mehmonlar', listS: 'Telegram orqali javob berganlarning @username’i oʻzi keladi. Telefonni mehmon xohlasa yozadi.', search: 'Ism, @username yoki telefon',
+    fAll: 'Hammasi', fYes: 'Keladi', fNo: 'Kelmaydi', fWait: 'Javob yoʻq', ago: function (h) { return h < 24 ? h + ' soat oldin' : Math.round(h / 24) + ' kun oldin'; },
+    no: 'kelmaydi', wait: 'javob kutilmoqda', viaTg: 'Telegram', viaWeb: 'Sayt', nothing: 'Hech kim topilmadi',
+    duaT: 'Duolar', duaS: 'Mehmonlar yozgan tilak va duolar.', tgT: 'Telegramda qanday koʻrinadi', tgS: 'Bot sizga va mehmonga shunday yozadi.', tgCouple: 'Sizga (juftlikka)', tgGuest: 'Mehmonga',
+    xlsDone: 'Fayl yuklab olindi', remT: 'Javob bermaganlarga eslatma', remS: 'Matnni tekshiring va har biriga bir tugma bilan yuboring.',
+    remText: 'Assalomu alaykum! Yusuf va Maryamning toʻyiga taklifnomani koʻrdingizmi? Kelishingiz yoki kelolmasligingizni bir tugma bilan bildirsangiz, tayyorgarlik uchun juda yordam beradi. Rahmat!', send: 'Yuborish', copied: 'Nusxa olindi' },
+  ru: { sample: 'Пример — все гости вымышленные', date: '16 января, суббота', daysLeft: 'дней осталось', sumT: 'Кто придёт', sumS: 'Ответы приходят сюда и в Telegram, когда гость нажимает кнопку.', people: 'чел.',
+    yesF: 'семей придут', noF: 'не смогут', waitF: 'не ответили', men: 'Мужчины · 06:00', women: 'Женщины · 11:00', all: 'Общее · 18:00', ppl: 'чел.',
+    osh: function (m) { return 'На нахорги ош: <b>' + m + ' человек</b>. Обычно 1 кг риса на 6–7 человек.'; },
+    xls: 'Список в Excel', remind: 'Напомнить', listT: 'Гости', listS: 'У тех, кто ответил через Telegram, @юзернейм приходит сам. Телефон гость пишет по желанию.', search: 'Имя, @юзернейм или телефон',
+    fAll: 'Все', fYes: 'Придут', fNo: 'Не придут', fWait: 'Не ответили', ago: function (h) { return h < 24 ? h + ' ч назад' : Math.round(h / 24) + ' дн. назад'; },
+    no: 'не придёт', wait: 'ждём ответа', viaTg: 'Telegram', viaWeb: 'Сайт', nothing: 'Никого не нашлось',
+    duaT: 'Дуа', duaS: 'Пожелания и дуа, которые написали гости.', tgT: 'Как это выглядит в Telegram', tgS: 'Так бот пишет вам и гостю.', tgCouple: 'Вам (паре)', tgGuest: 'Гостю',
+    xlsDone: 'Файл скачан', remT: 'Напомнить тем, кто не ответил', remS: 'Проверьте текст и отправьте каждому одной кнопкой.',
+    remText: 'Ассаляму алейкум! Вы видели приглашение на той Юсуфа и Марьям? Если ответите одной кнопкой, придёте или нет, это очень поможет с подготовкой. Спасибо!', send: 'Отправить', copied: 'Скопировано' },
+};
+var lang = 'uz', filter = 'all', tgTab = 'couple';
+var $ = function (s) { return document.querySelector(s); };
+var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+var t = function (k) { return T[lang][k]; };
+var initials = function (n) { return n.split(' ').map(function (x) { return x[0]; }).join('').slice(0, 2).toUpperCase(); };
+function toast(m) { var e = $('#toast'); e.textContent = m; e.classList.add('on'); clearTimeout(toast.k); toast.k = setTimeout(function () { e.classList.remove('on'); }, 2000); }
+
+function stats() {
+  var yes = G.filter(function (g) { return g.att === 1; }), no = G.filter(function (g) { return g.att === 0; }), wait = G.filter(function (g) { return g.wait; });
+  var ppl = yes.reduce(function (s, g) { return s + g.count; }, 0);
+  var by = function (p) { return yes.filter(function (g) { return g.part === p; }).reduce(function (s, g) { return s + g.count; }, 0); };
+  return { yes: yes, no: no, wait: wait, ppl: ppl, men: by('m'), women: by('f'), all: by('a') };
+}
+function render() {
+  var s = stats();
+  document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t(el.dataset.t); });
+  document.documentElement.lang = lang;
+  $('#q').placeholder = t('search');
+  $('#days').textContent = 66;
+  $('#ppl').textContent = s.ppl;
+  var C = 2 * Math.PI * 52, tot = s.yes.length + s.no.length + s.wait.length;
+  setTimeout(function () { $('#r1').setAttribute('stroke-dasharray', (C * s.yes.length / tot).toFixed(1) + ' ' + C); $('#r2').setAttribute('stroke-dasharray', (C * (s.yes.length + s.no.length) / tot).toFixed(1) + ' ' + C); }, 60);
+  $('#legend').innerHTML = [[s.yes.length, t('yesF'), 'var(--tq)'], [s.no.length, t('noF'), 'var(--red)'], [s.wait.length, t('waitF'), '#c9cfd9']].map(function (x) { return '<div class="lg"><i style="background:' + x[2] + '"></i><b>' + x[0] + '</b>' + esc(x[1]) + '</div>'; }).join('');
+  $('#split').innerHTML = [[t('men'), s.men], [t('women'), s.women]].map(function (x) { return '<div class="sp"><p>' + esc(x[0]) + '</p><b>' + x[1] + '</b><small>' + esc(t('ppl')) + '</small></div>'; }).join('') + (s.all ? '<div class="sp" style="grid-column:1/-1"><p>' + esc(t('all')) + '</p><b>' + s.all + '</b><small>' + esc(t('ppl')) + '</small></div>' : '');
+  $('#osh').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13h18M5 13a7 7 0 0 0 14 0M12 4v4M6 7l2 2M18 7l-2 2"/></svg><span>' + t('osh')(s.men) + '</span>';
+  $('#chips').innerHTML = [['all', t('fAll'), G.length], ['yes', t('fYes'), s.yes.length], ['no', t('fNo'), s.no.length], ['wait', t('fWait'), s.wait.length]].map(function (c) { return '<button class="chip' + (c[0] === filter ? ' on' : '') + '" data-f="' + c[0] + '">' + esc(c[1]) + '<small>' + c[2] + '</small></button>'; }).join('');
+  renderList();
+  $('#duas').innerHTML = G.filter(function (g) { return g.msg; }).map(function (g) { return '<div class="du"><p>«' + esc(g.msg) + '»</p><span>— ' + esc(g.name) + '</span></div>'; }).join('');
+  renderTg();
+}
+function partTag(p) { return p === 'm' ? '<span class="tag m">' + esc(t('men')) + '</span>' : p === 'f' ? '<span class="tag f">' + esc(t('women')) + '</span>' : p === 'a' ? '<span class="tag a">' + esc(t('all')) + '</span>' : ''; }
+function renderList() {
+  var q = $('#q').value.trim().toLowerCase().replace(/^@/, '');
+  var list = G.filter(function (g) {
+    if (filter === 'yes' && g.att !== 1) return false; if (filter === 'no' && g.att !== 0) return false; if (filter === 'wait' && !g.wait) return false;
+    if (!q) return true; return (g.name + ' ' + (g.user || '') + ' ' + (g.phone || '').replace(/\s/g, '')).toLowerCase().indexOf(q.replace(/\s/g, '')) >= 0 || g.name.toLowerCase().indexOf(q) >= 0;
+  }).sort(function (a, b) { return (a.wait ? 1 : 0) - (b.wait ? 1 : 0) || (b.at || 0) - (a.at || 0); });
+  $('#list').innerHTML = list.length ? list.map(function (g) {
+    var cls = g.wait ? 'w' : g.att ? 'y' : 'n';
+    var meta = [];
+    if (g.user) meta.push('<a href="https://t.me/' + esc(g.user) + '" target="_blank" rel="noopener">@' + esc(g.user) + '</a>');
+    if (g.phone) meta.push('<a href="tel:' + esc(g.phone.replace(/\s/g, '')) + '">' + esc(g.phone) + '</a>');
+    var when = g.at ? '<span class="ago">' + esc(t('ago')(Math.round((NOW - g.at) / H))) + '</span>' : '';
+    var right = g.wait ? '<span class="wait">' + esc(t('wait')) + '</span>' : g.att ? '<span class="cnt">' + g.count + '</span><small>' + esc(t('ppl')) + '</small>' : '<span class="no">' + esc(t('no')) + '</span>';
+    return '<div class="g"><div class="av ' + cls + '">' + esc(initials(g.name)) + '</div><div><div class="nm">' + esc(g.name) + '</div>' + (meta.length ? '<div class="meta">' + meta.join('') + '</div>' : '') + when +
+      (g.att ? partTag(g.part) : '') + (g.src ? '<span class="tag src">' + esc(g.src === 'tg' ? t('viaTg') : t('viaWeb')) + '</span>' : '') +
+      (g.msg ? '<p class="dua">«' + esc(g.msg) + '»</p>' : '') + '</div><div class="r">' + right + '</div></div>';
+  }).join('') : '<p class="empty">' + esc(t('nothing')) + '</p>';
+}
+function renderTg() {
+  document.querySelectorAll('[data-tg]').forEach(function (b) { b.classList.toggle('on', b.dataset.tg === tgTab); });
+  var s = stats();
+  var ru = lang === 'ru';
+  if (tgTab === 'couple') {
+    $('#tgwin').innerHTML = '<div class="tgh"><i>W</i><div><b>Walima</b><small>bot</small></div></div>' +
+      '<div class="bub">✅ <b>' + (ru ? 'Новый ответ' : 'Yangi javob') + '</b> — Yusuf &amp; Maryam\n👤 <b>Akmal aka</b> (@akmal_t)\n📞 +998 90 123 45 67\n👥 ' + (ru ? '3 человека · мужчины, 06:00' : '3 kishi · erkaklar, 06:00') + '\n🤲 «Alloh baxtli qilsin, ikki yoshga baraka bersin!»\n──────────\n' + (ru ? 'Итого' : 'Jami') + ': ✅ ' + s.yes.length + ' (' + s.ppl + ' ' + (ru ? 'чел.' : 'kishi') + ') · ❌ ' + s.no.length + ' · ⏳ ' + s.wait.length + '<span class="tm">09:41</span></div>' +
+      '<div class="ikb"><button>' + (ru ? '📋 Список' : '📋 Roʻyxat') + '</button><button>' + (ru ? '📥 Excel' : '📥 Excel') + '</button><button class="full">' + (ru ? '🔔 Напомнить не ответившим' : '🔔 Javob bermaganlarga eslatish') + '</button></div>' +
+      '<div class="bub">🌙 <b>' + (ru ? 'Итог дня' : 'Kun yakuni') + '</b>\n' + (ru ? 'Сегодня ответили 5 гостей. Всего придут ' : 'Bugun 5 mehmon javob berdi. Jami ') + s.ppl + (ru ? ' человек: мужчины ' : ' kishi keladi: erkaklar ') + s.men + (ru ? ', женщины ' : ', ayollar ') + s.women + '.<span class="tm">21:00</span></div>';
+  } else {
+    $('#tgwin').innerHTML = '<div class="tgh"><i>W</i><div><b>Walima</b><small>bot</small></div></div>' +
+      '<div class="bub me">/start<span class="tm">10:02</span></div>' +
+      '<div class="bub">' + (ru ? 'Ассаляму алейкум!\nВас приглашают на никох-туй <b>Юсуфа и Марьям</b>.\n📅 16 января, суббота\n🕕 Мужчины — 06:00, нахорги ош\n📍 Тойхона «Навруз», Ташкент\n\nВы придёте?' : 'Assalomu alaykum!\nSizni <b>Yusuf va Maryam</b>ning nikoh toʻyiga taklif qilishmoqda.\n📅 16-yanvar, shanba\n🕕 Erkaklar — 06:00, nahorgi osh\n📍 «Navroʻz» toʻyxonasi, Toshkent\n\nKelasizmi?') + '<span class="tm">10:02</span></div>' +
+      '<div class="ikb"><button>✅ ' + (ru ? 'Приду' : 'Kelaman') + '</button><button>❌ ' + (ru ? 'Не смогу' : 'Kelolmayman') + '</button></div>' +
+      '<div class="bub me">✅ ' + (ru ? 'Приду' : 'Kelaman') + '<span class="tm">10:03</span></div>' +
+      '<div class="bub">' + (ru ? 'Сколько вас будет?' : 'Necha kishi boʻlasiz?') + '<span class="tm">10:03</span></div>' +
+      '<div class="ikb" style="grid-template-columns:repeat(4,1fr)"><button>1</button><button>2</button><button>3</button><button>4+</button></div>' +
+      '<div class="bub">' + (ru ? 'Спасибо! Ждём вас 🤲\nНакануне я напомню время и адрес.' : 'Rahmat! Sizni kutamiz 🤲\nToʻydan bir kun oldin vaqt va manzilni eslataman.') + '<span class="tm">10:03</span></div>' +
+      '<div class="ikb"><button class="full">📍 ' + (ru ? 'Открыть на карте' : 'Xaritada ochish') + '</button></div>';
+  }
+}
+// Excel: CSV с BOM и «;» — открывается в Excel с узбекскими буквами
+function downloadXls() {
+  var rows = [['Ism', 'Telegram', 'Telefon', 'Javob', 'Kishi', 'Qism', 'Qayerdan', 'Duo']];
+  G.forEach(function (g) { rows.push([g.name, g.user ? '@' + g.user : '', g.phone || '', g.wait ? 'Javob yoʻq' : g.att ? 'Keladi' : 'Kelmaydi', g.att ? g.count : '', g.part === 'm' ? 'Erkaklar' : g.part === 'f' ? 'Ayollar' : g.part === 'a' ? 'Umumiy' : '', g.src === 'tg' ? 'Telegram' : g.src === 'web' ? 'Sayt' : '', g.msg || '']); });
+  var csv = '﻿' + rows.map(function (r) { return r.map(function (c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(';'); }).join('\r\n');
+  var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'Yusuf_Maryam_mehmonlar.csv'; document.body.appendChild(a); a.click(); a.remove();
+  toast(t('xlsDone'));
+}
+function openRemind() {
+  var w = G.filter(function (g) { return g.wait; });
+  $('#sheet').innerHTML = '<div class="grab"></div><h3>' + esc(t('remT')) + '</h3><p style="color:var(--mu);font-size:14px">' + esc(t('remS')) + '</p><textarea id="rtext">' + esc(t('remText')) + '</textarea>' +
+    w.map(function (g) { return '<div class="rm"><b>' + esc(g.name) + '</b><button class="btn ghost" style="min-height:40px" data-send="' + g.id + '">' + esc(t('send')) + '</button></div>'; }).join('');
+  $('#sheet').classList.add('on'); $('#bg').classList.add('on');
+}
+document.addEventListener('click', function (e) {
+  var f = e.target.closest('[data-f]'); if (f) { filter = f.dataset.f; render(); return; }
+  var l = e.target.closest('[data-l]'); if (l) { lang = l.dataset.l; document.querySelectorAll('[data-l]').forEach(function (b) { b.classList.toggle('on', b === l); }); render(); return; }
+  var tg = e.target.closest('[data-tg]'); if (tg) { tgTab = tg.dataset.tg; renderTg(); return; }
+  if (e.target.closest('#xls')) { downloadXls(); return; }
+  if (e.target.closest('#remind')) { openRemind(); return; }
+  if (e.target.id === 'bg') { $('#sheet').classList.remove('on'); $('#bg').classList.remove('on'); return; }
+  var sd = e.target.closest('[data-send]'); if (sd) {
+    var g = G.find(function (x) { return x.id === +sd.dataset.send; }); var txt = $('#rtext').value + '\nhttps://walima.uz/i/yusuf-maryam?g=' + encodeURIComponent(g.name);
+    if (g.phone) window.open('https://wa.me/' + g.phone.replace(/\D/g, '') + '?text=' + encodeURIComponent(txt), '_blank');
+    else { try { navigator.clipboard.writeText(txt); } catch (x) {} toast(t('copied')); }
+    sd.textContent = '✓'; sd.disabled = true;
+  }
+});
+$('#q').addEventListener('input', renderList);
+render();
+</script>
+</body>
+</html>
